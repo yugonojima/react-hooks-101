@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const App = (props) => {
   // const initialStates = {
@@ -7,6 +7,19 @@ const App = (props) => {
   // };
   const [state, setState] = useState(props);
   const { name, price } = state;
+
+  // レンダリング(マウント時とアップデート時)がされた後に実行される
+  useEffect(() => {
+    console.log("This is like componentDidMount or componentDidUpdate");
+  });
+  // マウント時のみ実行される
+  useEffect(() => {
+    console.log("This is like componentDidMount");
+  }, []);
+  // nameが変更される時だけ実行される
+  useEffect(() => {
+    console.log("This callback is for name only");
+  }, [name]);
 
   return (
     <>
