@@ -20,7 +20,7 @@ const Event = ({ event }) => {
     dispatch({
       type: ADD_OPERATION_LOG,
       description: `イベント(id=${id})を削除しました。`,
-      operation: timeCurrentIso8601(),
+      operatedAt: timeCurrentIso8601(),
     });
   };
   return (
