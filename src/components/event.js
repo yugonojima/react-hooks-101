@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { DELETE_EVENT } from "../actions";
+import { ADD_OPERATION_LOG, DELETE_EVENT } from "../actions";
 import AppContext from "../contexts/AppContext";
+import { timeCurrentIso8601 } from "../utils";
 
 const Event = ({ event }) => {
   const { dispatch } = useContext(AppContext);
@@ -15,6 +16,12 @@ const Event = ({ event }) => {
         type: DELETE_EVENT,
         id: id,
       });
+
+    dispatch({
+      type: ADD_OPERATION_LOG,
+      description: `イベント(id=${id})を削除しました。`,
+      operation: timeCurrentIso8601(),
+    });
   };
   return (
     <tr>
